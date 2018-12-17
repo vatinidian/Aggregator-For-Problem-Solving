@@ -1,2 +1,2 @@
 # ProjectMaths
-Git Hub to solve Math problems using Programming Language (Mostly JS)
+Git Hub to solve problems using Programming Language (Mostly JS)
