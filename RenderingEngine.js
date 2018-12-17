@@ -9,19 +9,21 @@
 			"ProblemExternalLink": "https://projecteuler.net/problem=1",
 			"InputType":"Single",
 			"Input": "Number",
+			"InputCast" : "Int",
 			"Output": "Number",
 			"Tag":"Maths,Number,Euler,JS",
 			"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
 		},{
-			"ProblemID" : "3",
-			"ProblemTitle" : "Find sum ",
-			"ProblemDescription" : "djafjgfjdgfjgjagfjgf babhjgfaj gfj g fghjgfj",
-			"ProblemExternalLink": "https://projecteuler.net/problem=3",
-			"InputType":"Single",
-			"Input": "Number",
-			"Output": "Number",
-			"Tag":"Maths,Number,Euler,JS",
-			"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+			"ProblemID" : "2",
+			"ProblemTitle" : "Sum of Pairs",
+			"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+			"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+			"InputType":"Multiples",
+			"Input": "Array,Number",
+			"InputCast" : "ArrayInt,Int",
+			"Output": "Array",
+			"Tag":"Maths,Array,Euler,JS",
+			"FunctionToExecute": "sum_pairs"
 		}]
 	};
 
@@ -41,10 +43,12 @@
 			html : sHtml
 		}).appendTo("." +sClassNameToAppend);
 
-		let sProblemDescription = "<h4>"+oProblem.ProblemDescription+"</h4>";	
+		let sExternalLink = "<a target='_blank' href='" + oProblem.ProblemExternalLink+ "'> Visit Problem : " + oProblem.ProblemTitle + "</a>";
+		let sProblemDescription = "<h4>"+oProblem.ProblemDescription+"</h4>" + sExternalLink;	
 		$("<div/>", {	
 			html : sProblemDescription
 		}).appendTo(".class-" + oProblem.ProblemID);
+
 
 		let sRowContentHTML = "<div class='col-sm-6 colLeft-"+ oProblem.ProblemID+ "'></div>"+
 		"<div class='col-sm-6 colRight-"+ oProblem.ProblemID+ "'><h4>Source Code</h4><br>"+
@@ -56,7 +60,7 @@
 
 		// Create the Form Content for INPUT
 		let sFormInputContent = createFormInputContent(oProblem);
-		let sFormGroupHtml = "<h4>Input</h4><div class='form-group'>"+ sFormInputContent + "</div>";	
+		let sFormGroupHtml = "<h4 class='bg-info'>Input</h4><div class='form-group'>"+ sFormInputContent + "</div>";	
 		$("<form/>", {
 	    	"class": "problemForm_"+oProblem.ProblemID ,
 	    	html: sFormGroupHtml
@@ -70,7 +74,7 @@
 			RenderingEngine.solveTheProblem(oProblem);
 		}).appendTo(".problemForm_"+oProblem.ProblemID );
 
-		let sOutputContent = "<br><h4>Output</h4><div class='form-group' id='output-content-"+oProblem.ProblemID+"'/>" ; 
+		let sOutputContent = "<br><h4  class='bg-info'>Output</h4><div class='form-group' id='output-content-"+oProblem.ProblemID+"'/>" ; 
 		$("<div/>", {
 			id: "output-" + oProblem.ProblemID,
 			html : sOutputContent
@@ -84,6 +88,12 @@
 		if(oProblem.InputType === "Single") {
 			sHTML += "<label for="+oProblem.Input+">"+oProblem.Input+":</label>" +
 		    	"<input class='form-control' id="+oProblem.Input+"></input>";
+		} else if(oProblem.InputType === "Multiples"){
+			let aMultiples = oProblem.Input.split(",");
+			aMultiples.forEach(function(sInput){
+				sHTML += "<label for="+sInput+">"+sInput+":</label>" +
+		    	"<input class='form-control' id="+sInput+"></input>";
+			});
 		}
 
 		return sHTML;
@@ -105,10 +115,30 @@
 
 		let sOutput="";
 		if(oProblem.InputType === "Single") {
-			let value = $("#" + oProblem.Input).val();
+			let value = JSON.parse($("#" + oProblem.Input).val());
 			sOutput = window[oProblem.FunctionToExecute](value);
+
+		} else if(oProblem.InputType === "Multiples"){
+			let aMultiples = oProblem.Input.split(",");
+			let aParams = [];
+			aMultiples.forEach(function(sInput){
+				aParams.push(JSON.parse($("#" + sInput).val()));
+			});
+			sOutput = window[oProblem.FunctionToExecute].apply(null, aParams);			
 		}
 		return sOutput;
+	}
+
+	function typeCastValue(value, sType){
+		let returnValue = "";
+
+		switch(sType){
+			case "Int":
+				returnValue = +sType;
+			break;
+		}
+
+		return returnValue;
 	}
 
 	function processOutput(output, ProblemID) {
