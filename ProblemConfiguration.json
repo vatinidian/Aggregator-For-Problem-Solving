@@ -1,0 +1,13 @@
+{
+	"Problems" : [{
+		"ProblemID" : "1",
+		"ProblemTitle" : "Find sum of multiples of 3 and 5.",
+		"ProblemDescription" : "Find sum of multiples of 3 and 5.",
+		"ProblemExternalLink": "https://projecteuler.net/problem=1",
+		"InputType":"Single",
+		"Input": "Number",
+		"Output": "Number",
+		"Tag":"Maths,Number,Euler,JS",
+		"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+	}]
+}
