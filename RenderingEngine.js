@@ -1,41 +1,121 @@
 // Helper to create the Page Dynamically using ProblemConfiguration JSON  file
-$.getJSON( "https://github.com/vatinidian/ProjectCode/blob/master/ProblemConfiguration.json", function( data ) {
-	debugger;
-  var items = [];
-  $.each( data, function( key, val ) {
-    items.push( "<li id='" + key + "'>" + val + "</li>" );
-  });
- 
-  $( "<ul/>", {
-    "class": "my-new-list",
-    html: items.join( "" )
-  }).appendTo( "body" );
-});
+// https://stackoverflow.com/questions/327047/what-is-the-most-efficient-way-to-create-html-elements-using-jquery
+(function(window){
+	var oJSONData = {
+		"Problems" : [{
+			"ProblemID" : "1",
+			"ProblemTitle" : "Multiples of 3 and 5",
+			"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
+			"ProblemExternalLink": "https://projecteuler.net/problem=1",
+			"InputType":"Single",
+			"Input": "Number",
+			"Output": "Number",
+			"Tag":"Maths,Number,Euler,JS",
+			"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+		},{
+			"ProblemID" : "3",
+			"ProblemTitle" : "Find sum ",
+			"ProblemDescription" : "djafjgfjdgfjgjagfjgf babhjgfaj gfj g fghjgfj",
+			"ProblemExternalLink": "https://projecteuler.net/problem=3",
+			"InputType":"Single",
+			"Input": "Number",
+			"Output": "Number",
+			"Tag":"Maths,Number,Euler,JS",
+			"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+		}]
+	};
 
-function loadJSON(callback) {   
+	
+	function createHTMLDesign(oJSONData){
+		let aProblemsData = oJSONData.Problems;
+		this.iProblemCount = 1;		
+		aProblemsData.forEach(createProblemContainer.bind(null, "panel-group"));
+	}
 
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', chrome.extension.getURL('ProblemConfiguration.json'), true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
-}
+	function createProblemContainer(sClassNameToAppend, oProblem){
+		let sHtml = "<div class='panel-heading'>" + this.iProblemCount + ". " + oProblem.ProblemTitle+
+		"</div><div class='panel-body class-"+oProblem.ProblemID+"'></div>";
 
-/*loadJSON(function(response) {
-  	// Parse JSON string into object
-    var actual_JSON = JSON.parse(response);
-    debugger;
- });*/
-/*
-$.ajax({
-  dataType: "json",
-  url: "https://github.com/vatinidian/ProjectCode/blob/master/ProblemConfiguration.json",
-  success: function(){
-  	debugger;
-  }
-});*/
+		$("<div/>", {
+			"class" : "panel panel-primary",
+			html : sHtml
+		}).appendTo("." +sClassNameToAppend);
+
+		let sProblemDescription = "<h4>"+oProblem.ProblemDescription+"</h4>";	
+		$("<div/>", {	
+			html : sProblemDescription
+		}).appendTo(".class-" + oProblem.ProblemID);
+
+		let sRowContentHTML = "<div class='col-sm-6 colLeft-"+ oProblem.ProblemID+ "'></div>"+
+		"<div class='col-sm-6 colRight-"+ oProblem.ProblemID+ "'><h4>Source Code</h4><br>"+
+		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() +"</code></pre></div>";
+		$("<div/>",{
+			class: "row",
+			html: sRowContentHTML
+		}).appendTo(".class-" + oProblem.ProblemID);	
+
+		// Create the Form Content for INPUT
+		let sFormInputContent = createFormInputContent(oProblem);
+		let sFormGroupHtml = "<h4>Input</h4><div class='form-group'>"+ sFormInputContent + "</div>";	
+		$("<form/>", {
+	    	"class": "problemForm_"+oProblem.ProblemID ,
+	    	html: sFormGroupHtml
+	  	}).appendTo(".colLeft-" + oProblem.ProblemID);
+
+	  	$("<button/>",{
+	  		"type" : "button",
+			"class" : "btn btn-primary",
+			"html"  : "Run Problem"
+		}).on("click", function(){
+			RenderingEngine.solveTheProblem(oProblem);
+		}).appendTo(".problemForm_"+oProblem.ProblemID );
+
+		let sOutputContent = "<br><h4>Output</h4><div class='form-group' id='output-content-"+oProblem.ProblemID+"'/>" ; 
+		$("<div/>", {
+			id: "output-" + oProblem.ProblemID,
+			html : sOutputContent
+		}).appendTo(".colLeft-" + oProblem.ProblemID);
+
+	  	this.iProblemCount++;
+	}
+
+	function createFormInputContent(oProblem){
+		let sHTML = "";
+		if(oProblem.InputType === "Single") {
+			sHTML += "<label for="+oProblem.Input+">"+oProblem.Input+":</label>" +
+		    	"<input class='form-control' id="+oProblem.Input+"></input>";
+		}
+
+		return sHTML;
+	}
+
+	var RenderingEngine = {};
+	RenderingEngine.init = function(){
+		createHTMLDesign(oJSONData);
+	};
+	
+	// Process Input and Output
+	RenderingEngine.solveTheProblem = function(oProblem) {
+		let output = processInputAndCallMethod(oProblem);
+		// Do it once confirmed that problem is solved. Use callback or Deffered ?
+		processOutput(output, oProblem.ProblemID);
+	}
+
+	function processInputAndCallMethod(oProblem) {
+
+		let sOutput="";
+		if(oProblem.InputType === "Single") {
+			let value = $("#" + oProblem.Input).val();
+			sOutput = window[oProblem.FunctionToExecute](value);
+		}
+		return sOutput;
+	}
+
+	function processOutput(output, ProblemID) {
+		// Output
+		$("<div/>", {
+			html: "<pre><p class='bg-success'>" + output.toString() +"</p></pre>"
+		}).appendTo("#output-content-" + ProblemID);
+	}	
+	window.RenderingEngine = RenderingEngine;
+})(window);
