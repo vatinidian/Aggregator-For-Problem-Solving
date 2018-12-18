@@ -1,31 +1,37 @@
 // Helper to create the Page Dynamically using ProblemConfiguration JSON  file
-// https://stackoverflow.com/questions/327047/what-is-the-most-efficient-way-to-create-html-elements-using-jquery
 (function(window){
-	var oJSONData = {
-		"Problems" : [{
-			"ProblemID" : "1",
-			"ProblemTitle" : "Multiples of 3 and 5",
-			"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
-			"ProblemExternalLink": "https://projecteuler.net/problem=1",
-			"InputType":"Single",
-			"Input": "Number",
-			"InputCast" : "Int",
-			"Output": "Number",
-			"Tag":"Maths,Number,Euler,JS",
-			"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
-		},{
-			"ProblemID" : "2",
-			"ProblemTitle" : "Sum of Pairs",
-			"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
-			"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
-			"InputType":"Multiples",
-			"Input": "Array,Number",
-			"InputCast" : "ArrayInt,Int",
-			"Output": "Array",
-			"Tag":"Maths,Array,Euler,JS",
-			"FunctionToExecute": "sum_pairs"
-		}]
-	};
+	try{
+		$.getJSON("ProblemConfiguration.json", function(oData){
+			debugger;
+		});
+	} catch(exception){
+		// Only for Development Case
+		var oJSONData = {
+			"Problems" : [{
+				"ProblemID" : "1",
+				"ProblemTitle" : "Multiples of 3 and 5",
+				"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
+				"ProblemExternalLink": "https://projecteuler.net/problem=1",
+				"InputType":"Single",
+				"Input": "Number",
+				"InputCast" : "Int",
+				"Output": "Number",
+				"Tag":"Maths,Number,Euler,JS",
+				"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+			},{
+				"ProblemID" : "2",
+				"ProblemTitle" : "Sum of Pairs",
+				"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+				"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+				"InputType":"Multiples",
+				"Input": "Array,Number",
+				"InputCast" : "ArrayInt,Int",
+				"Output": "Array",
+				"Tag":"Maths,Array,Euler,JS",
+				"FunctionToExecute": "sum_pairs"
+			}]
+		};
+	}
 
 	
 	function createHTMLDesign(oJSONData){
@@ -35,28 +41,32 @@
 	}
 
 	function createProblemContainer(sClassNameToAppend, oProblem){
+		// Create the Panel for the problem
 		let sHtml = "<div class='panel-heading'>" + this.iProblemCount + ". " + oProblem.ProblemTitle+
-		"</div><div class='panel-body class-"+oProblem.ProblemID+"'></div>";
+		"</div><div id='problem-" +oProblem.ProblemID+"'  class='panel-body class-"+oProblem.ProblemID+"'></div>";
 
 		$("<div/>", {
 			"class" : "panel panel-primary",
 			html : sHtml
 		}).appendTo("." +sClassNameToAppend);
 
+
+		// Create the Problem description and the external Link
 		let sExternalLink = "<a target='_blank' href='" + oProblem.ProblemExternalLink+ "'> Visit Problem : " + oProblem.ProblemTitle + "</a>";
 		let sProblemDescription = "<h4>"+oProblem.ProblemDescription+"</h4>" + sExternalLink;	
 		$("<div/>", {	
 			html : sProblemDescription
-		}).appendTo(".class-" + oProblem.ProblemID);
+		}).appendTo("#problem-" + oProblem.ProblemID);
 
 
+		// This sections handles creation of Input/OutPut (In Left column) and Source Code (In Right Column)
 		let sRowContentHTML = "<div class='col-sm-6 colLeft-"+ oProblem.ProblemID+ "'></div>"+
 		"<div class='col-sm-6 colRight-"+ oProblem.ProblemID+ "'><h4>Source Code</h4><br>"+
 		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() +"</code></pre></div>";
 		$("<div/>",{
 			class: "row",
 			html: sRowContentHTML
-		}).appendTo(".class-" + oProblem.ProblemID);	
+		}).appendTo("#problem-" + oProblem.ProblemID);	
 
 		// Create the Form Content for INPUT
 		let sFormInputContent = createFormInputContent(oProblem);
@@ -74,6 +84,8 @@
 			RenderingEngine.solveTheProblem(oProblem);
 		}).appendTo(".problemForm_"+oProblem.ProblemID );
 
+
+		// Create output content
 		let sOutputContent = "<br><h4  class='bg-info'>Output</h4><div class='form-group' id='output-content-"+oProblem.ProblemID+"'/>" ; 
 		$("<div/>", {
 			id: "output-" + oProblem.ProblemID,
