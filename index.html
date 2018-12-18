@@ -8,28 +8,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="RenderingEngine.js"></script>
   <script src="ProgramSolutions.js"></script>
+
+  <script>
+      function initialiseRendering(){
+        RenderingEngine.init();
+      }
+  </script>
 </head>
-<body>
 
 
-<div class="container">
-  <h2>Solved Problems Aggregator</h2>
-  <div class="panel-group">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Find the sum of all mutliples of 3 or 5 within a number.</div>
-      <div class="panel-body">
-      	<form>
-		  	<div class="form-group">
-		    	<label for="number">Input Number:</label>
-		    	<input type="number" class="form-control" id="number">
-		  	</div>
-  
-  			<button type="submit" class="btn btn-primary" onclick="calculateSumofMultiplesOfThreeAndFive()">Calculate</button>
-		</form>
-	</div>
+<body onload="initialiseRendering()">
+    <div class="container">
+      <h2>Solved Problems Aggregator</h2>
+      <div class="panel-group"></div>
     </div>
-  </div>
-</div>
-
 </body>
+
 </html>
