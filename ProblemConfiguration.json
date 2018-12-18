@@ -9,7 +9,9 @@
 					"InputCast" : "Int",
 					"Output": "Number",
 					"Tag":"Maths,Number,Euler,JS",
-					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive",
+					"Status": "Solved",
+					"TimeStamp" : ""
 				},{
 					"ProblemID" : "2",
 					"ProblemTitle" : "Sum of Pairs",
@@ -20,7 +22,9 @@
 					"InputCast" : "ArrayInt,Int",
 					"Output": "Array",
 					"Tag":"Maths,Array,CodeWar,JS",
-					"FunctionToExecute": "sum_pairs"
+					"FunctionToExecute": "sum_pairs",
+					"Status": "Solved",
+					"TimeStamp" : ""
 				}, {
 					"ProblemID" : "3",
 					"ProblemTitle" : "Pick Peaks",
@@ -31,7 +35,9 @@
 					"InputCast" : "ArrayInt",
 					"Output": "Array",
 					"Tag":"Maths,Array,CodeWar,JS",
-					"FunctionToExecute": "pickPeaks"
+					"FunctionToExecute": "pickPeaks",
+					"Status": "Solved",
+					"TimeStamp" : ""
 				}, {
 					"ProblemID" : "4",
 					"ProblemTitle" : "Simple Pig Latin",
@@ -42,6 +48,8 @@
 					"InputCast" : "String",
 					"Output": "String",
 					"Tag":"String,CodeWar,JS",
-					"FunctionToExecute": "pigIt"
+					"FunctionToExecute": "pigIt",
+					"Status": "Solved",
+					"TimeStamp" : ""
 				}]
 }
