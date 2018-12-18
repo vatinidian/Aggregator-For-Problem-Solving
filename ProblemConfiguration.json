@@ -1,13 +1,25 @@
 {
 	"Problems" : [{
-		"ProblemID" : "1",
-		"ProblemTitle" : "Find sum of multiples of 3 and 5.",
-		"ProblemDescription" : "Find sum of multiples of 3 and 5.",
-		"ProblemExternalLink": "https://projecteuler.net/problem=1",
-		"InputType":"Single",
-		"Input": "Number",
-		"Output": "Number",
-		"Tag":"Maths,Number,Euler,JS",
-		"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
-	}]
+					"ProblemID" : "1",
+					"ProblemTitle" : "Multiples of 3 and 5",
+					"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
+					"ProblemExternalLink": "https://projecteuler.net/problem=1",
+					"InputType":"Single",
+					"Input": "Number",
+					"InputCast" : "Int",
+					"Output": "Number",
+					"Tag":"Maths,Number,Euler,JS",
+					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+				},{
+					"ProblemID" : "2",
+					"ProblemTitle" : "Sum of Pairs",
+					"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+					"InputType":"Multiples",
+					"Input": "Array,Number",
+					"InputCast" : "ArrayInt,Int",
+					"Output": "Array",
+					"Tag":"Maths,Array,Euler,JS",
+					"FunctionToExecute": "sum_pairs"
+				}]
 }
