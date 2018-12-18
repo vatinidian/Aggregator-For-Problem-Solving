@@ -1,24 +1,15 @@
 // Contains solutions to all Problems mentioned
-// Each method should be independent and solve only 1 problem
 
 // 1. https://projecteuler.net/problem=1
 function calculateSumofMultiplesOfThreeAndFive(iInputNumber) {
-	let i = 1, iThree= 3, iFive=5, iSum=0;
-	while(iInputNumber && (iThree || iFive)){
-		if(iThree && (iThree*i < iInputNumber)){
-			iSum += iThree * i;
-		} else {
-			iThree = 0;
-		}
-
-		if(iFive && (iFive*i < iInputNumber)){
-			iSum += iFive * i;
-		} else {
-			iFive = 0;
-		}
-		i++;
-	}
+	let iSum=0;
+	let iNumberLimit = iInputNumber - 1;
+	iSum = 3*calculateSumOfN(parseInt(iNumberLimit/3, 10)) + 5*calculateSumOfN(parseInt(iNumberLimit/5, 10)) - 15*calculateSumOfN(parseInt(iNumberLimit/15, 10));
 	return iSum;
+}
+
+function calculateSumOfN(iNumber){
+	return parseInt(((iNumber)*(iNumber + 1)/2), 10);
 }
 
 // 2. https://www.codewars.com/kata/sum-of-pairs
