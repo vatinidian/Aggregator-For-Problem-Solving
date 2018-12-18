@@ -1,45 +1,56 @@
 // Helper to create the Page Dynamically using ProblemConfiguration JSON  file
 (function(window){
-	try{
+
+	// Load Probelms information 
+	function loadProblemsData(fnCallBack) {
 		$.getJSON("ProblemConfiguration.json", function(oData){
 			debugger;
+			if(typeof fnCallBack === "function") {
+				fnCallBack(oData);
+			}
+		}).fail(function(){
+			// Only for Development Case
+			let oJSONData = {
+				"Problems" : [{
+					"ProblemID" : "1",
+					"ProblemTitle" : "Multiples of 3 and 5",
+					"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
+					"ProblemExternalLink": "https://projecteuler.net/problem=1",
+					"InputType":"Single",
+					"Input": "Number",
+					"InputCast" : "Int",
+					"Output": "Number",
+					"Tag":"Maths,Number,Euler,JS",
+					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
+				},{
+					"ProblemID" : "2",
+					"ProblemTitle" : "Sum of Pairs",
+					"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+					"InputType":"Multiples",
+					"Input": "Array,Number",
+					"InputCast" : "ArrayInt,Int",
+					"Output": "Array",
+					"Tag":"Maths,Array,Euler,JS",
+					"FunctionToExecute": "sum_pairs"
+				}]
+			};
+
+			if(typeof fnCallBack === "function") {
+				fnCallBack(oJSONData);
+			}	
 		});
-	} catch(exception){
-		// Only for Development Case
-		var oJSONData = {
-			"Problems" : [{
-				"ProblemID" : "1",
-				"ProblemTitle" : "Multiples of 3 and 5",
-				"ProblemDescription" : "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n Find the sum of all the multiples of 3 or 5 below 1000.",
-				"ProblemExternalLink": "https://projecteuler.net/problem=1",
-				"InputType":"Single",
-				"Input": "Number",
-				"InputCast" : "Int",
-				"Output": "Number",
-				"Tag":"Maths,Number,Euler,JS",
-				"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive"
-			},{
-				"ProblemID" : "2",
-				"ProblemTitle" : "Sum of Pairs",
-				"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
-				"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
-				"InputType":"Multiples",
-				"Input": "Array,Number",
-				"InputCast" : "ArrayInt,Int",
-				"Output": "Array",
-				"Tag":"Maths,Array,Euler,JS",
-				"FunctionToExecute": "sum_pairs"
-			}]
-		};
 	}
 
 	
+	// Start the process of rendering the HTML Tags
 	function createHTMLDesign(oJSONData){
 		let aProblemsData = oJSONData.Problems;
 		this.iProblemCount = 1;		
 		aProblemsData.forEach(createProblemContainer.bind(null, "panel-group"));
 	}
 
+	// Helper to create the Panel container for Problem 
 	function createProblemContainer(sClassNameToAppend, oProblem){
 		// Create the Panel for the problem
 		let sHtml = "<div class='panel-heading'>" + this.iProblemCount + ". " + oProblem.ProblemTitle+
@@ -95,6 +106,7 @@
 	  	this.iProblemCount++;
 	}
 
+	// Helper to create elements for Input Form Container
 	function createFormInputContent(oProblem){
 		let sHTML = "";
 		if(oProblem.InputType === "Single") {
@@ -111,9 +123,12 @@
 		return sHTML;
 	}
 
+	// Create Rendering Engine Function
 	var RenderingEngine = {};
 	RenderingEngine.init = function(){
-		createHTMLDesign(oJSONData);
+		loadProblemsData(function(oJSONData){
+			createHTMLDesign(oJSONData);
+		});
 	};
 	
 	// Process Input and Output
@@ -123,8 +138,8 @@
 		processOutput(output, oProblem.ProblemID);
 	}
 
+	// Helper to execute the Problem Specific Functions
 	function processInputAndCallMethod(oProblem) {
-
 		let sOutput="";
 		if(oProblem.InputType === "Single") {
 			let value = JSON.parse($("#" + oProblem.Input).val());
@@ -141,7 +156,9 @@
 		return sOutput;
 	}
 
+	// Helper to cast the value based on InputCast
 	function typeCastValue(value, sType){
+		// TODO : This method needs to be enhanced
 		let returnValue = "";
 
 		switch(sType){
@@ -153,6 +170,7 @@
 		return returnValue;
 	}
 
+	// Helper to render the output in HTML
 	function processOutput(output, ProblemID) {
 		// Output
 		$("<div/>", {
