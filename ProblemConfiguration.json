@@ -19,7 +19,18 @@
 					"Input": "Array,Number",
 					"InputCast" : "ArrayInt,Int",
 					"Output": "Array",
-					"Tag":"Maths,Array,Euler,JS",
+					"Tag":"Maths,Array,CodeWar,JS",
 					"FunctionToExecute": "sum_pairs"
+				}, {
+					"ProblemID" : "3",
+					"ProblemTitle" : "Pick Peaks",
+					"ProblemDescription" : "In this kata, you will write a function that returns the positions and the values of the "peaks" (or local maxima) of a numeric array.\nFor example, the array arr = [0, 1, 2, 5, 1, 0] has a peak at position 3 with a value of 5 (since arr[3] equals 5).",
+					"ProblemExternalLink": "https://www.codewars.com/kata/pick-peaks/",
+					"InputType":"Single",
+					"Input": "Array",
+					"InputCast" : "ArrayInt",
+					"Output": "Array",
+					"Tag":"Maths,Array,CodeWar,JS",
+					"FunctionToExecute": "pickPeaks"
 				}]
 }
