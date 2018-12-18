@@ -1,0 +1,10 @@
+.page-header {
+    margin: 0px !important;
+}
+
+@media screen and (min-width: 500px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+}
