@@ -141,14 +141,15 @@
 	function processInputAndCallMethod(oProblem) {
 		let sOutput="";
 		if(oProblem.InputType === "Single") {
-			let value = JSON.parse($("#problem-" + oProblem.ProblemID + "-" + oProblem.Input).val());
+			let value = typeCastValue($("#problem-" + oProblem.ProblemID + "-" + oProblem.Input).val(), oProblem.InputCast);
 			sOutput = window[oProblem.FunctionToExecute](value);
 
 		} else if(oProblem.InputType === "Multiples"){
 			let aMultiples = oProblem.Input.split(",");
 			let aParams = [];
-			aMultiples.forEach(function(sInput){
-				aParams.push(JSON.parse($("#problem-" + oProblem.ProblemID + "-" + sInput).val()));
+			let aInputCasts = oProblem.InputCast.split(",");
+			aMultiples.forEach(function(sInput, iIndex){
+				aParams.push(typeCastValue($("#problem-" + oProblem.ProblemID + "-" + sInput).val(), aInputCasts[iIndex]));
 			});
 			sOutput = window[oProblem.FunctionToExecute].apply(null, aParams);			
 		}
@@ -164,6 +165,13 @@
 			case "Int":
 				returnValue = +sType;
 			break;
+			case "String":
+				returnValue = sType.toString();
+			break;	
+			case "ArrayInt":
+			case "ArrayString":	
+				returnValue = JSON.parse(value);
+			break;	
 		}
 
 		return returnValue;
