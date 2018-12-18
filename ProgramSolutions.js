@@ -58,3 +58,16 @@ function pickPeaks(arr){
   }
   return oOutput;
 }
+
+
+// 4. https://www.codewars.com/kata/simple-pig-latin/
+function pigIt(str){
+  let aStrings = str.split(" ");
+  for(var i =0; i < aStrings.length; i++) {
+    if(/\w/.test(aStrings[i])) {
+      aStrings[i] = aStrings[i].replace(aStrings[i][0], "") + aStrings[i][0] + "ay";
+    }
+  }
+  
+  return aStrings.join(" ");
+}
