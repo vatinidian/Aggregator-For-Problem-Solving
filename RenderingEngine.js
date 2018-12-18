@@ -110,12 +110,12 @@
 		let sHTML = "";
 		if(oProblem.InputType === "Single") {
 			sHTML += "<label for="+oProblem.Input+">"+oProblem.Input+":</label>" +
-		    	"<input class='form-control' id="+oProblem.Input+"></input>";
+		    	"<input class='form-control' id='problem-" + oProblem.ProblemID + "-"+oProblem.Input+"'></input>";
 		} else if(oProblem.InputType === "Multiples"){
 			let aMultiples = oProblem.Input.split(",");
 			aMultiples.forEach(function(sInput){
 				sHTML += "<label for="+sInput+">"+sInput+":</label>" +
-		    	"<input class='form-control' id="+sInput+"></input>";
+		    	"<input class='form-control'  id='problem-" + oProblem.ProblemID + "-"+oProblem.Input+"'></input>";
 			});
 		}
 
@@ -141,14 +141,14 @@
 	function processInputAndCallMethod(oProblem) {
 		let sOutput="";
 		if(oProblem.InputType === "Single") {
-			let value = JSON.parse($("#" + oProblem.Input).val());
+			let value = JSON.parse($("#problem-" + oProblem.ProblemID + "-" + oProblem.Input).val());
 			sOutput = window[oProblem.FunctionToExecute](value);
 
 		} else if(oProblem.InputType === "Multiples"){
 			let aMultiples = oProblem.Input.split(",");
 			let aParams = [];
 			aMultiples.forEach(function(sInput){
-				aParams.push(JSON.parse($("#" + sInput).val()));
+				aParams.push(JSON.parse($("#problem-" + oProblem.ProblemID + "-" + sInput).val()));
 			});
 			sOutput = window[oProblem.FunctionToExecute].apply(null, aParams);			
 		}
