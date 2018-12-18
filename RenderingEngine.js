@@ -56,7 +56,7 @@
 	// Helper to create the Panel container for Problem 
 	function createProblemContainer(sClassNameToAppend, oProblem){
 		// Create the Panel for the problem
-		let sPanelTitle = "<h4 class='panel-title'><a data-toggle='collapse' data-parent = '#problemsGroup' href = '#panel-collapse-problem-"+oProblem.ProblemID+"'>"+ this.iProblemCount + ". " + oProblem.ProblemTitle+"</a></h4>";
+		let sPanelTitle = "<h4 class='panel-title'><a data-toggle='collapse' data-parent = '#problemsGroup' href = '#panel-collapse-problem-"+oProblem.ProblemID+"'>" + this.iProblemCount + ". " + "[" + oProblem.Status + "] - " + oProblem.ProblemTitle+"</a></h4>";
 		let sHiddenText ="<span style='display: none;'>" + oProblem.Tag + "," + oProblem.ProblemExternalLink +  "," + oProblem.Status + "," +"</span>";
 		let sHtml = sHiddenText + "<div class='panel-heading'>" + sPanelTitle +
 		"</div><div id = 'panel-collapse-problem-"+oProblem.ProblemID+"' class = 'panel-collapse collapse'><div id='problem-" +oProblem.ProblemID+"'  class='panel-body class-"+oProblem.ProblemID+"'></div></div>";
