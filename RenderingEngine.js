@@ -52,8 +52,9 @@
 	// Helper to create the Panel container for Problem 
 	function createProblemContainer(sClassNameToAppend, oProblem){
 		// Create the Panel for the problem
-		let sHtml = "<div class='panel-heading'>" + this.iProblemCount + ". " + oProblem.ProblemTitle+
-		"</div><div id='problem-" +oProblem.ProblemID+"'  class='panel-body class-"+oProblem.ProblemID+"'></div>";
+		let sPanelTitle = "<h4 class='panel-title'><a data-toggle='collapse' data-parent = '#problemsGroup' href = '#panel-collapse-problem-"+oProblem.ProblemID+"'>"+ this.iProblemCount + ". " + oProblem.ProblemTitle+"</a></h4>";
+		let sHtml = "<div class='panel-heading'>" + sPanelTitle +
+		"</div><div id = 'panel-collapse-problem-"+oProblem.ProblemID+"' class = 'panel-collapse collapse'><div id='problem-" +oProblem.ProblemID+"'  class='panel-body class-"+oProblem.ProblemID+"'></div></div>";
 
 		$("<div/>", {
 			"class" : "panel panel-primary",
