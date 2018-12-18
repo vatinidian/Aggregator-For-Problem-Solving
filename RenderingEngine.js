@@ -30,7 +30,7 @@
 					"Input": "Array,Number",
 					"InputCast" : "ArrayInt,Int",
 					"Output": "Array",
-					"Tag":"Maths,Array,Euler,JS",
+					"Tag":"Maths,Array,codewars,JS",
 					"FunctionToExecute": "sum_pairs"
 				}]
 			};
@@ -53,7 +53,8 @@
 	function createProblemContainer(sClassNameToAppend, oProblem){
 		// Create the Panel for the problem
 		let sPanelTitle = "<h4 class='panel-title'><a data-toggle='collapse' data-parent = '#problemsGroup' href = '#panel-collapse-problem-"+oProblem.ProblemID+"'>"+ this.iProblemCount + ". " + oProblem.ProblemTitle+"</a></h4>";
-		let sHtml = "<div class='panel-heading'>" + sPanelTitle +
+		let sHiddenText ="<span style='display: none;'>" + oProblem.Tag + "," + oProblem.ProblemExternalLink + "," +"</span>";
+		let sHtml = sHiddenText + "<div class='panel-heading'>" + sPanelTitle +
 		"</div><div id = 'panel-collapse-problem-"+oProblem.ProblemID+"' class = 'panel-collapse collapse'><div id='problem-" +oProblem.ProblemID+"'  class='panel-body class-"+oProblem.ProblemID+"'></div></div>";
 
 		$("<div/>", {
@@ -127,6 +128,8 @@
 	var RenderingEngine = {};
 	RenderingEngine.init = function(){
 		loadProblemsData(function(oJSONData){
+			let iLength = oJSONData.Problems ? oJSONData.Problems.length : 0;
+			$("#problemCount").text("Total (" +iLength + ")");
 			createHTMLDesign(oJSONData);
 		});
 	};
@@ -184,5 +187,14 @@
 		let sOutputHtml = "<pre><p class='bg-success'>" + JSON.stringify(output) +"</p></pre>";
 		$("#output-content-" + ProblemID).html(sOutputHtml);
 	}	
+
+	// Handle Search
+	RenderingEngine.handleSearch= function(){
+		var value = $("#searchBar").val().toLowerCase();
+	    $(".panel-primary").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	}
+
 	window.RenderingEngine = RenderingEngine;
 })(window);

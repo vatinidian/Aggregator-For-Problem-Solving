@@ -23,14 +23,15 @@
     <div class="container">
         <div class = "page-header">
            <h3>
-              Solved Problems Aggregator            
+              Solved Problems Aggregator
+              <small id="problemCount"></small>
            </h3>
 
            <!-- Search Bar -->
           <div class="input-group" id="adv-search">
-              <input type="text" class="form-control" placeholder="Search for problems" />
+              <input type="search" class="form-control" id="searchBar" onchange="RenderingEngine.handleSearch()" placeholder="Search for problems with title / tags (JS, CodeWars) / ExternalLink etc.." />
               <div class="input-group-btn">                   
-                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-primary" onclick="RenderingEngine.handleSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
               </div>
           </div>
 

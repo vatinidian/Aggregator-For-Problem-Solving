@@ -59,7 +59,6 @@ function pickPeaks(arr){
   return oOutput;
 }
 
-
 // 4. https://www.codewars.com/kata/simple-pig-latin/
 function pigIt(str){
   let aStrings = str.split(" ");

@@ -3,7 +3,8 @@
 <head>
   <title>Project Code</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CustomStyle.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
@@ -22,11 +23,21 @@
     <div class="container">
         <div class = "page-header">
            <h3>
-              Solved Problems Aggregator            
+              Solved Problems Aggregator
+              <small id="problemCount"></small>
            </h3>
-      </div>
-      
-      <div class="panel-group" id="problemsGroup"></div>
+
+           <!-- Search Bar -->
+          <div class="input-group" id="adv-search">
+              <input type="search" class="form-control" id="searchBar" onchange="RenderingEngine.handleSearch()" placeholder="Search for problems with title / tags (JS, CodeWars) / ExternalLink etc.." />
+              <div class="input-group-btn">                   
+                <button type="button" class="btn btn-primary" onclick="RenderingEngine.handleSearch()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="panel-group" id="problemsGroup"></div>
     </div>
 </body>
 
