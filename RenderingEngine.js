@@ -163,10 +163,10 @@
 
 		switch(sType){
 			case "Int":
-				returnValue = +sType;
+				returnValue = +value;
 			break;
 			case "String":
-				returnValue = sType.toString();
+				returnValue = value.toString();
 			break;	
 			case "ArrayInt":
 			case "ArrayString":	
