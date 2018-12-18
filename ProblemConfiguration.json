@@ -32,5 +32,16 @@
 					"Output": "Array",
 					"Tag":"Maths,Array,CodeWar,JS",
 					"FunctionToExecute": "pickPeaks"
+				}, {
+					"ProblemID" : "4",
+					"ProblemTitle" : "Simple Pig Latin",
+					"ProblemDescription" : "Move the first letter of each word to the end of it, then add 'ay' to the end of the word. Leave punctuation marks untouched.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/simple-pig-latin/",
+					"InputType":"Single",
+					"Input": "String",
+					"InputCast" : "String",
+					"Output": "String",
+					"Tag":"String,CodeWar,JS",
+					"FunctionToExecute": "pigIt"
 				}]
 }
