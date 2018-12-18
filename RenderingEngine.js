@@ -172,9 +172,8 @@
 	// Helper to render the output in HTML
 	function processOutput(output, ProblemID) {
 		// Output
-		$("<div/>", {
-			html: "<pre><p class='bg-success'>" + output.toString() +"</p></pre>"
-		}).appendTo("#output-content-" + ProblemID);
+		let sOutputHtml = "<pre><p class='bg-success'>" + JSON.stringify(output) +"</p></pre>";
+		$("#output-content-" + ProblemID).html(sOutputHtml);
 	}	
 	window.RenderingEngine = RenderingEngine;
 })(window);
