@@ -4,7 +4,6 @@
 	// Load Probelms information 
 	function loadProblemsData(fnCallBack) {
 		$.getJSON("ProblemConfiguration.json", function(oData){
-			debugger;
 			if(typeof fnCallBack === "function") {
 				fnCallBack(oData);
 			}

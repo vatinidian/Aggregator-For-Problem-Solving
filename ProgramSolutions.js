@@ -36,3 +36,25 @@ function sum_pairs(ints, s){
     
     return aOutput;
 }
+
+// 3. https://www.codewars.com/kata/pick-peaks/
+function pickPeaks(arr){
+  let oOutput = {pos:[],peaks:[]};
+  let iArrayLength = arr.length;
+  if(!iArrayLength) {
+    return oOutput;
+  }
+ 
+  let iCurrentPeak=0, iCurrentPosition=1;
+  for(let i =1; i < iArrayLength-1; i++){
+    if(arr[i] < arr[i+1]){
+      iCurrentPeak = arr[i+1];
+      iCurrentPosition = i+1;
+    } else if(arr[i] > arr[i+1] && iCurrentPeak){
+      oOutput["peaks"].push(iCurrentPeak);
+      oOutput["pos"].push(iCurrentPosition);
+      iCurrentPeak = 0;
+    }
+  }
+  return oOutput;
+}
