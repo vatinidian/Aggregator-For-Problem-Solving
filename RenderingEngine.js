@@ -21,6 +21,7 @@
 					"Output": "Number",
 					"Tag":"Maths,Number,Euler,JS",
 					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive",
+					"HelperFunctions": "calculateSumOfN",
 					"Status": "Solved",
 					"TimeStamp" : ""
 				},{
@@ -76,9 +77,17 @@
 
 
 		// This sections handles creation of Input/OutPut (In Left column) and Source Code (In Right Column)
+		// Show helper functions also part of source code.
+		let aHelperFunctions = oProblem.HelperFunctions.split(","); 
+		let sHelperFunction = "";
+		aHelperFunctions.forEach(function(sFunctionName){
+			if(typeof window[sFunctionName] === "function"){
+				sHelperFunction += "<pre><code>" + window[sFunctionName].toString() + "</pre></code>";	
+			}   
+		});
 		let sRowContentHTML = "<div class='col-sm-6 colLeft-"+ oProblem.ProblemID+ "'></div>"+
 		"<div class='col-sm-6 colRight-"+ oProblem.ProblemID+ "'><h4>Source Code</h4><br>"+
-		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() +"</code></pre></div>";
+		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() + sHelperFunction + "</code></pre></div>";
 		$("<div/>",{
 			class: "row",
 			html: sRowContentHTML
