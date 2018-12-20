@@ -10,6 +10,7 @@
 					"Output": "Number",
 					"Tag":"Maths,Number,Euler,JS",
 					"FunctionToExecute": "calculateSumofMultiplesOfThreeAndFive",
+					"HelperFunctions" : "calculateSumOfN",
 					"Status": "Solved",
 					"TimeStamp" : ""
 				},{
@@ -24,6 +25,7 @@
 					"Tag":"Maths,Array,CodeWar,JS",
 					"FunctionToExecute": "sum_pairs",
 					"Status": "Solved",
+					"HelperFunctions" : "",
 					"TimeStamp" : ""
 				}, {
 					"ProblemID" : "3",
@@ -37,6 +39,7 @@
 					"Tag":"Maths,Array,CodeWar,JS",
 					"FunctionToExecute": "pickPeaks",
 					"Status": "Solved",
+					"HelperFunctions" : "",
 					"TimeStamp" : ""
 				}, {
 					"ProblemID" : "4",
@@ -50,6 +53,7 @@
 					"Tag":"String,CodeWar,JS",
 					"FunctionToExecute": "pigIt",
 					"Status": "Solved",
+					"HelperFunctions" : "",
 					"TimeStamp" : ""
 				}]
 }
