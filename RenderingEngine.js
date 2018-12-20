@@ -78,7 +78,7 @@
 
 		// This sections handles creation of Input/OutPut (In Left column) and Source Code (In Right Column)
 		// Show helper functions also part of source code.
-		let aHelperFunctions = oProblem.HelperFunctions.split(","); 
+		let aHelperFunctions = oProblem.HelperFunctions ? oProblem.HelperFunctions.split(",") : []; 
 		let sHelperFunction = "";
 		aHelperFunctions.forEach(function(sFunctionName){
 			if(typeof window[sFunctionName] === "function"){
