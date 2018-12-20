@@ -55,5 +55,47 @@
 					"Status": "Solved",
 					"HelperFunctions" : "",
 					"TimeStamp" : ""
+				}, {
+					"ProblemID" : "5",
+					"ProblemTitle" : "What's a Perfect Power anyway?",
+					"ProblemDescription" : "Your task is to check wheter a given integer is a perfect power. If it is a perfect power, return a pair m and k with mk = n as a proof. Otherwise return Nothing, Nil, null, NULL, None or your language's equivalent.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/whats-a-perfect-power-anyway/",
+					"InputType":"Single",
+					"Input": "Number",
+					"InputCast" : "Int",
+					"Output": "Number",
+					"Tag":"Maths,Array,CodeWar,JS",
+					"FunctionToExecute": "isPP",
+					"Status": "Solved",
+					"HelperFunctions" : "",
+					"TimeStamp" : ""
+				},{
+					"ProblemID" : "6",
+					"ProblemTitle" : "Sum of Pairs",
+					"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+					"InputType":"Multiples",
+					"Input": "Array,Number",
+					"InputCast" : "ArrayInt,Int",
+					"Output": "Array",
+					"Tag":"Maths,Array,CodeWar,JS",
+					"FunctionToExecute": "sum_pairs",
+					"Status": "Solved",
+					"HelperFunctions" : "",
+					"TimeStamp" : ""
+				},{
+					"ProblemID" : "7",
+					"ProblemTitle" : "Sum of Pairs",
+					"ProblemDescription" : "Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.",
+					"ProblemExternalLink": "https://www.codewars.com/kata/sum-of-pairs",
+					"InputType":"Multiples",
+					"Input": "Array,Number",
+					"InputCast" : "ArrayInt,Int",
+					"Output": "Array",
+					"Tag":"Maths,Array,CodeWar,JS",
+					"FunctionToExecute": "sum_pairs",
+					"Status": "Solved",
+					"HelperFunctions" : "",
+					"TimeStamp" : ""
 				}]
 }
