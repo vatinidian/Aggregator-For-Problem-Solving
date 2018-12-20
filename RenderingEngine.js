@@ -87,7 +87,7 @@
 		});
 		let sRowContentHTML = "<div class='col-sm-6 colLeft-"+ oProblem.ProblemID+ "'></div>"+
 		"<div class='col-sm-6 colRight-"+ oProblem.ProblemID+ "'><h4>Source Code</h4><br>"+
-		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() + sHelperFunction + "</code></pre></div>";
+		"<pre><code>"+ window[oProblem.FunctionToExecute].toString() + "<br/>" + sHelperFunction + "</code></pre></div>";
 		$("<div/>",{
 			class: "row",
 			html: sRowContentHTML
