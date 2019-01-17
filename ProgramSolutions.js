@@ -148,3 +148,17 @@ function moveZeros(arr) {
   
   return arr;
 }
+
+
+// 8. https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/monk-takes-a-walk/
+function monkTakesAWalk(input){
+    let aInputs = input.split("\n");
+    let iLength = aInputs.length;
+    let s="", aOut;
+    for(let i = 1; i < iLength; i++){
+        aOut = aInputs[i].match(/[aeiou]/gi);
+        s += "\n" + (aOut ? aOut.length : 0);
+    }
+    
+    return s;
+}
