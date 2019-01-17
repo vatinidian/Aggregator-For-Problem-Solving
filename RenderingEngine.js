@@ -125,7 +125,7 @@
 		let sHTML = "";
 		if(oProblem.InputType === "Single") {
 			sHTML += "<label for="+oProblem.Input+">"+oProblem.Input+":</label>" +
-		    	"<input class='form-control' id='problem-" + oProblem.ProblemID + "-"+oProblem.Input+"'></input>";
+		    	"<textarea rows ="100" cols="10" class='form-control' id='problem-" + oProblem.ProblemID + "-"+oProblem.Input+"'></textarea>";
 		} else if(oProblem.InputType === "Multiples"){
 			let aMultiples = oProblem.Input.split(",");
 			aMultiples.forEach(function(sInput){
