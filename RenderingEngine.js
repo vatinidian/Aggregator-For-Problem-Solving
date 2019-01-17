@@ -99,7 +99,7 @@
 		$("<form/>", {
 	    	"class": "problemForm_"+oProblem.ProblemID ,
 	    	html: sFormGroupHtml
-	  	}).appendTo(".colLeft-" + oProblem.ProblemID);
+	  	}).on("submit", function(oEvent){oEvent.preventDefault()}).appendTo(".colLeft-" + oProblem.ProblemID);
 
 	  	$("<button/>",{
 	  		"type" : "button",
