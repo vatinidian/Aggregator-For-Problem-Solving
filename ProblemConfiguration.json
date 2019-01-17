@@ -97,5 +97,19 @@
 					"Status": "Solved",
 					"HelperFunctions" : "",
 					"TimeStamp" : ""
+				}, {
+					"ProblemID" : "8",
+					"ProblemTitle" : "Monk Takes a Walk",
+					"ProblemDescription" : "Today, Monk went for a walk in a garden. There are many trees in the garden and each tree has an English alphabet on it. While Monk was walking, he noticed that all trees with vowels on it are not in good state. He decided to take care of them. So, he asked you to tell him the count of such trees in the garden. ",
+					"ProblemExternalLink": "https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/monk-takes-a-walk/",
+					"InputType":"Single",
+					"Input": "String",
+					"InputCast" : "String",
+					"Output": "Number",
+					"Tag":"String,HackerEarth,JS",
+					"FunctionToExecute": "monkTakesAWalk",
+					"Status": "Solved",
+					"HelperFunctions" : "",
+					"TimeStamp" : ""
 				}]
 }
