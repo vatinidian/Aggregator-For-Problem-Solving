@@ -4,4 +4,4 @@ Application to aggregate all solved problems across different coding sites and l
 ![](ProblemsAggregator.gif)
 
 # Technology Used
-Pure Javascript
+Pure Javascript with BootStrap CSS
